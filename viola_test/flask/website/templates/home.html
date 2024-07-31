@@ -1,0 +1,26 @@
+//Home page HTML filvtil upload af URLs
+
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+
+{% block content %}
+<br />
+<h1 align="center">Uploaded URL's</h1>
+<ul class="list-group list-group-flush" id="urls">
+    {% for url in user.urls %}
+    <li class="list-group-item">
+        <a href="{{ url.data }}" target="_blank">{{ url.data }}</a>
+        <button type="button" class="close" onClick="deleteUrl({{ url.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <input type="url" name="url" id="url" class="form-control" placeholder="Enter URL" required>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Upload URL</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  flask:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: development
+      FLASK_RUN_PORT: 80
+      FLASK_RUN_HOST: 0.0.0.0
+    stop_signal: SIGINT
+    volumes:
+      - ./flask:/app
+    networks:
+      - app-network
+    
+
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: bridge
+
